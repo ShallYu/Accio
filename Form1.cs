@@ -21,7 +21,7 @@ namespace FaceController
         long detectionTime;
         List<Rectangle> faces = new List<Rectangle>();
         List<Rectangle> eyes = new List<Rectangle>();
-        bool tryUseCuda = false;
+        DetectFace df1 = new DetectFace("haarcascade_frontalface_default.xml", "haarcascade_eye.xml");
 
         public Form1()
         {
@@ -43,10 +43,9 @@ namespace FaceController
             faces.Clear();
             eyes.Clear();
             _capture.Retrieve(frame, 0);
-            DetectFace.Detect(
-           frame, "haarcascade_frontalface_default.xml", "haarcascade_eye.xml",
+            df1.Detect(
+           frame, 
            faces, eyes,
-           tryUseCuda,
            out detectionTime);
 
             foreach (Rectangle face in faces)
